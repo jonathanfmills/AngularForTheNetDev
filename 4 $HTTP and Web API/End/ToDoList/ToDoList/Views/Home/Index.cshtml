@@ -1,0 +1,29 @@
+﻿@section scripts
+{
+
+    <script src="~/js/TaskListController.js"></script>
+}
+
+<div id="body" ng-controller="TaskListController">
+    <div class="container">
+        <h3 class="text-warning">{{pageTitle}}</h3>
+
+        <form>
+            <input type="text" ng-model="editingTask.Name" />
+            <button ng-click="addTask()">Add Task</button>
+
+        </form>
+
+        <div>
+            Search: <input type="text" ng-model="activeSearch" />
+        </div>
+        <div class="taskList" ng-repeat="task in taskList | filter: activeSearch">
+            <div>
+                <span>
+                    <input type="checkbox" ng-click="completeTask($index)" ng-model="task.Completed" />
+                    <a ng-class="{'strike':task.Completed}" href="#" ng-click="editTask($index)">{{task.Id}} - {{task.Name}}</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
